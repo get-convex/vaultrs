@@ -12,16 +12,12 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-aws = ["aws-sdk-iam", "aws-sdk-sts", "aws-sigv4", "aws-types", "aws-credential-types", "aws-smithy-runtime-api", "base64", "http", "serde_json"]
+aws = ["aws-sdk-sts", "aws-sigv4", "aws-types", "aws-credential-types", "aws-smithy-runtime-api", "base64", "http", "serde_json"]
 oidc = ["tiny_http", "tokio"]
 
 [dependencies]
 async-trait = "0.1.68"
 aws-credential-types = { version = "1.1.5", optional = true }
-aws-sdk-iam = { version = "1.13", optional = true, default-features = false, features = [
-    "default-https-client",
-    "rt-tokio",
-] }
 aws-sdk-sts = { version = "1.13", optional = true, default-features = false, features = [
     "default-https-client",
     "rt-tokio",
@@ -40,6 +36,10 @@ url = "2.3.1"
 vaultrs = { version = "0.7.4", path = "..", default-features = false }
 
 [dev-dependencies]
+aws-sdk-iam = { version = "1.13", default-features = false, features = [
+    "default-https-client",
+    "rt-tokio",
+] }
 reqwest = "0.11.15"
 tokio-test = "0.4.2"
 tracing-test = "0.2.4"
